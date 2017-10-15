@@ -5,6 +5,15 @@
 </head>
 <body>
 	<h1>PETS</h1>
+	<ul>
+		<% pet.forEach(function(item, i) { %>
+			<li> <a href="/pets/<%= i%>"> <%= item.name %> the <%= item.species %> </a></li>
+		
+			<a href="/pets/<%= i%>/edit">EDIT</a>
+		<% }) %>
+
+	</ul>
+
 	<a href="/pets/new">Add a Pet!</a>
 
 </body>

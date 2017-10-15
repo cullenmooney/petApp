@@ -5,5 +5,12 @@
 </head>
 <body>
 	<h1>Edit Your Pet</h1>
+	<form action="/pets/<%= index%>/edit?_method=PUT" method="POST">
+		Name: <input type="text" name="name" value="<%=pet.name%>">
+		Species Type: <input type="text" name="species" value="<%= pet.species%>">
+		Age: <input type="text" name= "age" value=" <%= pet.age%>">
+		Image URL: <input type="text" name="img" value="<%= pet.img%>">
+		<button type="submit">UPDATE</button>
+	</form>
 </body>
 </html>
