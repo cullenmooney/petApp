@@ -1,9 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const pets = require('../models/pets');
+const pet = require('../models/pets');
 
 router.get('/', (req, res) => {
-	res.render('index', {pet: pets})
+	pet.find((err, pets) => {
+		if(err) {
+			res.send('there was an error with the database')
+		} else {
+			res.render('index', {pet: pets})
+		}
+	})
 })
 
 router.get('/new', (req, res) => {
@@ -11,17 +17,33 @@ router.get('/new', (req, res) => {
 })
 
 router.get('/:index', (req, res) => {
-	res.render('show', {pet: pets[req.params.index]})
+	pet.find((err, pets) => {
+		if(err) {
+			res.send('there was an error with the database')
+		} else {
+			res.render('show', {pet: pets[req.params.index]})
+		}
+	})
 })
 
 router.get('/:index/edit', (req, res) => {
-	res.render('edit', {pet: pets[req.params.index], index: req.params.index})
-	res.redirect('/pets');
+	pet.find((err, pets) => {
+		if(err) {
+			res.send('there was an error with the database')
+		} else {
+			res.render('edit', {pet: pets[req.params.index], index: req.params.index})
+		}
+	})
 })
 
 router.post('/create', (req, res) => {
-	pets.push(req.body)
-	res.redirect('/pets')
+	pet.create(req.body, (err, pets) => {
+		if(err) {
+			res.send('there was an error with the database')
+		} else {
+			res.redirect('/pets')
+		}
+	})
 })
 
 router.put('/:index/edit', (req, res) => {
