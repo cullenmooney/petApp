@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Your Pets</title>
 	<link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
 	<h1>PETS</h1>
-	<ul>
-		<% pet.forEach(function(item, i) { %>
-			<li> <a href="/pets/<%= i%>"> <%= item.name %> the <%= item.species %> </a></li>
 		
+		<% pet.forEach(function(item, i) { %>
+			<div id="break">
+			
+			<a href="/pets/<%= i%>"> <%= item.name %> the <%= item.species %> </a>
+			
+			<br>
+			
 			<a href="/pets/<%= i%>/edit">EDIT</a>
+			
+			<br>
 			
 			<form action="/pets/<%= item.id%>?_method=DELETE" method="POST">
 				<button type="submit">DELETE</button>
 			</form>
+			</div>
 			
 		<% }) %>
-	</ul>
 
 	<a href="/pets/new">Add a Pet!</a>
 

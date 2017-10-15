@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Update Your Pet</title>
+	<link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
 	<h1>Edit Your Pet</h1>
 	<form action="/pets/<%= index%>/edit?_method=PUT" method="POST">
 		Name: <input type="text" name="name" value="<%=pet.name%>">
+		<br>
 		Species Type: <input type="text" name="species" value="<%= pet.species%>">
+		<br>
 		Age: <input type="text" name= "age" value=" <%= pet.age%>">
+		<br>
 		Image URL: <input type="text" name="img" value="<%= pet.img%>">
+		<br>
 		<button type="submit">UPDATE</button>
 	</form>
 </body>
