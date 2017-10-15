@@ -39,7 +39,7 @@ router.get('/:index/edit', (req, res) => {
 router.post('/create', (req, res) => {
 	pet.create(req.body, (err, pets) => {
 		if(err) {
-			res.send('there was an error with the database')
+			res.send('there was an error with the create')
 		} else {
 			res.redirect('/pets')
 		}
@@ -47,8 +47,13 @@ router.post('/create', (req, res) => {
 })
 
 router.put('/:index/edit', (req, res) => {
-	pets[req.params.index] = req.body
-	res.redirect('/pets')
+	pet.findOneAndUpdate(req.params.index, req.body, (err, pet) => {
+		if(err) {
+			res.send('error in update')
+		} else {
+			res.redirect('/pets')
+		}
+	})
 })
 
 router.delete('/:index', (req, res) => {
