@@ -19,8 +19,19 @@ router.get('/:index/edit', (req, res) => {
 	res.redirect('/pets');
 })
 
+router.post('/create', (req, res) => {
+	pets.push(req.body)
+	res.redirect('/pets')
+})
+
 router.put('/:index/edit', (req, res) => {
 	pets[req.params.index] = req.body
 	res.redirect('/pets')
 })
+
+router.delete('/:index', (req, res) => {
+	pets.splice(req.params.index, 1);
+	res.redirect('/pets');
+})
+
 module.exports = router;

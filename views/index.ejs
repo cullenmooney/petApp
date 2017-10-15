@@ -10,8 +10,12 @@
 			<li> <a href="/pets/<%= i%>"> <%= item.name %> the <%= item.species %> </a></li>
 		
 			<a href="/pets/<%= i%>/edit">EDIT</a>
+			
+			<form action="/pets/<%= i%>?_method=DELETE" method="POST">
+				<button type="submit">DELETE</button>
+			</form>
+			
 		<% }) %>
-
 	</ul>
 
 	<a href="/pets/new">Add a Pet!</a>
