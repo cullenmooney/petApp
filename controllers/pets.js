@@ -57,8 +57,13 @@ router.put('/:index/edit', (req, res) => {
 })
 
 router.delete('/:index', (req, res) => {
-	pets.splice(req.params.index, 1);
-	res.redirect('/pets');
+	pet.findByIdAndRemove(req.params.index, (err, pet) => {
+		if(err) {
+			res.send('there was an error with the delete')
+		} else {
+			res.redirect('/pets')
+		}
+	})
 })
 
 module.exports = router;
